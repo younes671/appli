@@ -46,7 +46,7 @@
                 "</tr>",
             "</tbody>",
                 "</table>";
-      }
+      } // affichage
     ?>
 </body>
 </html>
