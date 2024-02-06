@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,29 +12,60 @@
     <title>Ajout produit</title>
 </head>
 <body>
-    <h1>Ajouter produit</h1>
-    <form action="traitement.php" method="post">
-        <p>
-            <label>
-                Nom du produit : 
-                <input type="text"  name="name">
-            </label>
-        </p>
-        <p>
-            <label>
-                Prix du produit : 
-                <input type="number" step="any" name="price">
-            </label>
-        </p>
-         <p>
-            <label>
-                Quantité désirée : 
-                <input type="number" name="qtt" value="1">
-            </label>
-        </p>
-        <p>
-            <input type="submit" name="submit" value="Ajouter le produit">
-        </p>
-    </form>
+<header>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav">
+            <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">Home</a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link" href="recap.php">Récapitulatif</a>
+            </li>
+        </ul>
+        </div>
+    </div>
+    </nav>
+</header>
+        <form action="traitement.php" method="post">
+            <legend>Ajouter produit</legend>
+                <div class="mb-3">
+                    <label for="disabledTextInput" class="form-label">Nom du produit</label>
+                    <input type="text"  class="form-control" name="name">
+                </div>
+                <div class="mb-3">
+                    <label for="disabledTextInput" class="form-label">Prix du produit</label>
+                    <input type="number"  class="form-control" name="price">
+                </div>
+                <div class="mb-3">
+                    <label for="disabledTextInput" class="form-label">Quantitée désirée</label>
+                    <input type="number"  class="form-control" name="qtt" value="1">
+                </div>
+            <button type="submit" class="btn btn-primary" name="submit">Ajouter</button>
+        </form>
+        <?php
+        $quantite = 0;
+        foreach($_SESSION['products'] as $product ){
+          $quantite += $product['qtt'];
+        }
+  
+        echo "Nombre Produit :<br>";
+        echo "<button type='button' class='btn btn-primary position-relative> 
+        <span class='position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger'>". $quantite; 
+        echo '<span class="visually-hidden">unread messages</span></span></button>';
+        
+        ?>
+
+<!-- <button type="button" class="btn btn-primary position-relative">
+  Inbox
+  <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+    99+
+    <span class="visually-hidden">unread messages</span>
+  </span>
+</button> -->
   </body>
 </html>

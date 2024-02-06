@@ -8,7 +8,7 @@
         $name = filter_input(INPUT_POST, "name", FILTER_SANITIZE_SPECIAL_CHARS); // filter_sanitize.. empeche injection code html
         $price = filter_input(INPUT_POST, "price", FILTER_VALIDATE_FLOAT, FILTER_FLAG_ALLOW_FRACTION); // filter_validate_float => nb à virgule obligatoire, filter_flag_allow... => permet caractère "," ou "."
         $qtt = filter_input(INPUT_POST, "qtt", FILTER_VALIDATE_INT); // valide que si la saisie est nb entier
-
+        
         // vérification succès filtre
 
         if($name && $price && $qtt){
@@ -20,7 +20,7 @@
                 "qtt" => $qtt,
                 "total" => $price * $qtt
             ];
-
+            
 
             // enregistrer produit dans $_session
             $_SESSION['products'] [] = $product;
@@ -30,7 +30,11 @@
 
     }
 
+   
+            
+     
 
+    
         header("location:index.php");
 
 ?>
